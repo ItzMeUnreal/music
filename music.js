@@ -99,16 +99,20 @@ function pauseSong() {
 }
 
 function setupVisualizer() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        analyser = audioCtx.createAnalyser();
-        source = audioCtx.createMediaElementSource(audio);
-        source.connect(analyser);
-        analyser.connect(audioCtx.destination);
-        analyser.fftSize = 128;
+    try {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioCtx.createAnalyser();
+            source = audioCtx.createMediaElementSource(audio);
+            source.connect(analyser);
+            analyser.connect(audioCtx.destination);
+            analyser.fftSize = 128;
+        }
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        drawVisualizer();
+    } catch(e) {
+        console.warn('Visualizer unavailable:', e);
     }
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    drawVisualizer();
 }
 
 function drawVisualizer() {
