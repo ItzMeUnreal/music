@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unreal's music player</title>
+    <link rel="icon" type="image/png" href="https://itzmeunreal.neocities.org/images/icon.png">
+    <link rel="stylesheet" href="https://itzmeunreal.neocities.org/test/style.css">
+    <link rel="stylesheet" href="music.css">
+</head>
+<body>
+<div class="content">
+    <div class="navbar-items">
+        <span class="navbar-page-text">unreal's homepage</span>
+        <div class="nav-dropdown">
+            <button class="label">
+                <img src="https://itzmeunreal.neocities.org/images/home.png" width="16" height="16" class="label-icon-space">
+                personal
+                <span class="dropdown-arrow">▾</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="/test/index.html" class="dropdown-item">
+                    <img src="https://itzmeunreal.neocities.org/images/home.png" width="14" height="14" class="label-icon-space">
+                    home
+                </a>
+                <a href="/test/about.html" class="dropdown-item">
+                    <img src="https://itzmeunreal.neocities.org/images/about.png" width="14" height="14" class="label-icon-space">
+                    about
+                </a>
+                <a href="/test/404.html" class="dropdown-item">
+                    <img src="https://itzmeunreal.neocities.org/images/work.png" width="14" height="14" class="label-icon-space">
+                    works
+                </a>
+                <a href="https://gamesbefore.neocities.org/" class="dropdown-item">
+                    <img src="https://gamesbefore.neocities.org/img/glungus.png" width="14" height="14" class="label-icon-space">
+                    GLUNGUS
+                </a>
+            </div>
+        </div>
+        <div class="nav-dropdown">
+            <button class="label label-primary">
+                <img src="https://itzmeunreal.neocities.org/images/joystick.png" width="16" height="16" class="label-icon-space">
+                entertainment
+                <span class="dropdown-arrow">▾</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="/test/music.html" class="dropdown-item">
+                    <img src="https://itzmeunreal.neocities.org/images/music.png" width="14" height="14" class="label-icon-space">
+                    music player
+                </a>
+                <a href="/test/arcade.html" class="dropdown-item">
+                    <img src="https://itzmeunreal.neocities.org/images/joystick.png" width="14" height="14" class="label-icon-space">
+                    arcade
+                </a>
+                <a href="/test/paint.html" class="dropdown-item">
+                    <img src="https://itzmeunreal.neocities.org/images/sketch.png" width="14" height="14" class="label-icon-space">
+                    sketchbook
+                </a>
+            </div>
+        </div>
+        <div class="nav-dropdown">
+            <button class="label">
+                <img src="https://itzmeunreal.neocities.org/images/community.png" width="16" height="16" class="label-icon-space">
+                community
+                <span class="dropdown-arrow">▾</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="/test/404.html" class="dropdown-item">
+                    <img src="https://itzmeunreal.neocities.org/images/community.png" width="14" height="14" class="label-icon-space">
+                    forum
+                </a>
+                <a href="/test/404.html" class="dropdown-item">
+                    <img src="https://itzmeunreal.neocities.org/images/chat.png" width="14" height="14" class="label-icon-space">
+                    chat room
+                </a>
+                <a href="/test/404.html" class="dropdown-item">
+                    <img src="https://itzmeunreal.neocities.org/images/guestbook.png" width="14" height="14" class="label-icon-space">
+                    guestbook
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="card mp-wrapper">
+            <div class="mp-header">
+                <span>♪ music player</span>
+            </div>
+
+            <div class="mp-body">
+                <div class="mp-left">
+                    <div class="mp-artwork-area">
+                        <canvas id="visualizer"></canvas>
+                        <div class="mp-disk-wrapper">
+                            <img src="https://itzmeunreal.neocities.org/images/icon.png" id="spinningDisk" alt="disk">
+                        </div>
+                    </div>
+
+                    <div class="mp-info">
+                        <div class="mp-song-name" id="songName">select a song</div>
+                        <div class="mp-song-meta" id="songMeta">—</div>
+                    </div>
+
+                    <div class="mp-progress-area">
+                        <input type="range" id="progressBar" value="0" max="100" step="0.01">
+                        <div class="mp-time" id="currentTime">0:00</div>
+                    </div>
+
+                    <div class="mp-controls">
+                        <button class="mp-btn" id="shuffleBtn" title="Shuffle">⇄</button>
+                        <button class="mp-btn" id="prevBtn" title="Previous">⏮</button>
+                        <button class="mp-btn mp-btn-play" id="playBtn" title="Play/Pause">▶</button>
+                        <button class="mp-btn" id="nextBtn" title="Next">⏭</button>
+                        <button class="mp-btn" id="loopBtn" title="Loop">↺</button>
+                    </div>
+
+                    <div class="mp-volume-area">
+                        <span class="mp-vol-icon" id="muteBtn">🔊</span>
+                        <input type="range" id="volumeBar" min="0" max="1" step="0.01" value="0.7">
+                        <span class="mp-vol-label" id="volLabel">70</span>
+                    </div>
+                </div>
+
+                <div class="mp-playlist" id="playlist"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<audio id="audioPlayer"></audio>
+<script src="music-playlist.js"></script>
+<script src="music.js"></script>
+</body>
+</html>

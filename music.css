@@ -1,0 +1,347 @@
+.mp-wrapper {
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.mp-header {
+    background: linear-gradient(to bottom, #3a3a3a 0%, #222 50%, #111 100%);
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    border-bottom: 1px solid #0066cc;
+    letter-spacing: 1px;
+}
+
+.mp-body {
+    display: flex;
+    height: 480px;
+}
+
+.mp-left {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    flex-shrink: 0;
+    background: linear-gradient(to bottom, #1a1a1a 0%, #111 100%);
+    border-right: 1px solid #222;
+    padding: 16px;
+    gap: 12px;
+}
+
+.mp-artwork-area {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    background: #0a0a0a;
+    border: 1px solid #222;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#visualizer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.mp-disk-wrapper {
+    position: relative;
+    z-index: 2;
+    width: 80px;
+    height: 80px;
+}
+
+#spinningDisk {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #0066cc;
+    box-shadow: 0 0 16px rgba(0,102,204,0.5);
+    animation: spin 3s linear infinite;
+    animation-play-state: paused;
+    object-fit: cover;
+}
+
+#spinningDisk.playing {
+    animation-play-state: running;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.mp-info {
+    text-align: center;
+}
+
+.mp-song-name {
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mp-song-meta {
+    font-size: 11px;
+    color: #555;
+    margin-top: 2px;
+}
+
+.mp-progress-area {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mp-time {
+    font-size: 10px;
+    color: #555;
+    white-space: nowrap;
+    font-family: monospace;
+}
+
+#progressBar {
+    flex: 1;
+    height: 6px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #222;
+    border-radius: 0;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #000;
+}
+
+#progressBar::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+}
+
+#progressBar::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #0066cc var(--progress, 0%), #222 var(--progress, 0%));
+    height: 6px;
+    border-radius: 0;
+}
+
+#progressBar::-moz-range-thumb {
+    width: 0;
+    height: 0;
+    border: none;
+    background: transparent;
+}
+
+#progressBar::-moz-range-track {
+    height: 6px;
+    background: #222;
+    border-radius: 0;
+}
+
+#progressBar::-moz-range-progress {
+    background: #0066cc;
+    height: 6px;
+}
+
+.mp-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.mp-btn {
+    background: linear-gradient(to bottom, #2a2a2a 0%, #1a1a1a 100%);
+    border: 1px solid #333;
+    color: #aaa;
+    width: 34px;
+    height: 34px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+}
+
+.mp-btn:hover {
+    background: linear-gradient(to bottom, #333 0%, #222 100%);
+    color: #fff;
+    border-color: #444;
+}
+
+.mp-btn.active {
+    color: #0066cc;
+    border-color: #0052a3;
+    box-shadow: 0 0 6px rgba(0,102,204,0.4);
+}
+
+.mp-btn-play {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+    background: linear-gradient(to bottom, #0077ee 0%, #0055bb 100%);
+    border-color: #0044aa;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0,102,204,0.4);
+}
+
+.mp-btn-play:hover {
+    background: linear-gradient(to bottom, #0088ff 0%, #0066cc 100%);
+    color: #fff;
+}
+
+.mp-volume-area {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mp-vol-icon {
+    font-size: 14px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+#volumeBar {
+    flex: 1;
+    height: 6px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #222;
+    border-radius: 0;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #000;
+}
+
+#volumeBar::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+}
+
+#volumeBar::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #0066cc var(--vol, 70%), #222 var(--vol, 70%));
+    height: 6px;
+    border-radius: 0;
+}
+
+#volumeBar::-moz-range-thumb {
+    width: 0;
+    height: 0;
+    border: none;
+    background: transparent;
+}
+
+#volumeBar::-moz-range-track {
+    height: 6px;
+    background: #222;
+    border-radius: 0;
+}
+
+#volumeBar::-moz-range-progress {
+    background: #0066cc;
+    height: 6px;
+}
+
+.mp-vol-label {
+    font-size: 10px;
+    color: #0066cc;
+    font-family: monospace;
+    min-width: 20px;
+}
+
+.mp-playlist {
+    flex: 1;
+    overflow-y: auto;
+    background: linear-gradient(to bottom, #111 0%, #0d0d0d 100%);
+    scrollbar-width: thin;
+    scrollbar-color: #0066cc #111;
+}
+
+.mp-playlist::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mp-playlist::-webkit-scrollbar-track {
+    background: #111;
+}
+
+.mp-playlist::-webkit-scrollbar-thumb {
+    background: #0066cc;
+    border-radius: 3px;
+}
+
+.mp-playlist-section {
+    padding: 8px 12px 4px;
+    font-size: 11px;
+    color: #0066cc;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.mp-playlist-desc {
+    padding: 2px 12px 8px;
+    font-size: 11px;
+    color: #444;
+}
+
+.mp-playlist-item {
+    display: flex;
+    align-items: center;
+    padding: 7px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    transition: background 0.1s ease;
+    gap: 8px;
+}
+
+.mp-playlist-item:hover {
+    background: rgba(0,102,204,0.08);
+}
+
+.mp-playlist-item.active {
+    background: rgba(0,102,204,0.15);
+    color: #0066cc;
+}
+
+.mp-playlist-item.active .mp-item-name {
+    color: #4da6ff;
+}
+
+.mp-item-num {
+    font-size: 10px;
+    color: #333;
+    min-width: 18px;
+    font-family: monospace;
+}
+
+.mp-playlist-item.active .mp-item-num {
+    color: #0066cc;
+}
+
+.mp-item-name {
+    font-size: 12px;
+    color: #ccc;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mp-item-duration {
+    font-size: 10px;
+    color: #444;
+    font-family: monospace;
+}
