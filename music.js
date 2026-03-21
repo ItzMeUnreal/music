@@ -75,6 +75,7 @@ function loadSong(index) {
     audio.src = track.src;
     songName.textContent = track.title;
     songMeta.textContent = track.meta || '—';
+    disk.src = track.cover || 'https://itzmeunreal.neocities.org/images/icon.png';
     document.querySelectorAll('.mp-playlist-item').forEach(el => {
         el.classList.toggle('active', parseInt(el.dataset.globalIndex) === index);
     });
