@@ -2,7 +2,7 @@ let globalIdx = 0;
 
 const songs = [
     {
-        name: "unreal's playlist",
+        name: "xaev top 10 :0",
         description: "",
         tracks: [
             { title: "it's always a good time", src: "https://file.garden/abIGtIH1yApu4jf7/songs/xaev/it's%20always%20a%20good%20time.mp3", meta: "xaev", globalIndex: globalIdx++ },
