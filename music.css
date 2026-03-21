@@ -51,8 +51,8 @@
 .mp-disk-wrapper {
     position: relative;
     z-index: 2;
-    width: 80px;
-    height: 80px;
+    width: 160px;
+    height: 160px;
 }
 
 #spinningDisk {
@@ -61,7 +61,7 @@
     border-radius: 50%;
     border: 2px solid #0066cc;
     box-shadow: 0 0 16px rgba(0,102,204,0.5);
-    animation: spin 3s linear infinite;
+    animation: spin 4s linear infinite;
     animation-play-state: paused;
     object-fit: cover;
 }
