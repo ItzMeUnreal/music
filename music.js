@@ -13,13 +13,15 @@ const songMeta = document.getElementById('songMeta');
 const currentTimeEl = document.getElementById('currentTime');
 const disk = document.getElementById('spinningDisk');
 const canvas = document.getElementById('visualizer');
+const ctx = canvas.getContext('2d');
+const playlistEl = document.getElementById('playlist');
 
 let currentIndex = 0;
 let isPlaying = false;
 let isShuffle = false;
 let isLoop = false;
 let isMuted = false;
-let audioCtx, source, osc;
+let analyser, source, audioCtx, animFrame;
 
 function formatTime(s) {
     const m = Math.floor(s / 60);
@@ -28,7 +30,6 @@ function formatTime(s) {
 }
 
 function buildPlaylist() {
-    const playlistEl = document.getElementById('playlist');
     playlistEl.innerHTML = '';
     songs.forEach((section) => {
         const sectionEl = document.createElement('div');
@@ -46,6 +47,7 @@ function buildPlaylist() {
         section.tracks.forEach((track, i) => {
             const item = document.createElement('div');
             item.className = 'mp-playlist-item';
+            item.dataset.src = track.src;
             item.dataset.globalIndex = track.globalIndex;
             item.innerHTML = `
                 <span class="mp-item-num">${i + 1}</span>
@@ -82,35 +84,6 @@ function loadSong(index) {
     currentTimeEl.textContent = '0:00';
 }
 
-function setupVisualizer() {
-    try {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            source = audioCtx.createMediaElementSource(audio);
-        }
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-
-        const initFn = (cvs, ctx) => {
-            ctx.fillStyle = '#0a0a0a';
-            ctx.strokeStyle = '#0066cc';
-            ctx.lineWidth = 2;
-        };
-
-        const primerFn = (cvs, ctx) => {
-            ctx.fillRect(0, 0, cvs.width, cvs.height);
-        };
-
-        if (osc) osc.stop();
-        osc = new _osc.Oscilloscope(audioCtx, source, canvas, audioCtx.destination, 2048, initFn, primerFn);
-        osc.start();
-    } catch(e) {
-        console.warn('Visualizer unavailable:', e);
-    }
-}
-
 function playSong() {
     audio.play();
     isPlaying = true;
@@ -126,6 +99,39 @@ function pauseSong() {
     disk.classList.remove('playing');
 }
 
+function setupVisualizer() {
+    try {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioCtx.createAnalyser();
+            source = audioCtx.createMediaElementSource(audio);
+            source.connect(analyser);
+            analyser.connect(audioCtx.destination);
+            analyser.fftSize = 128;
+        }
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        drawVisualizer();
+    } catch(e) {
+        console.warn('Visualizer unavailable:', e);
+    }
+}
+
+function drawVisualizer() {
+    animFrame = requestAnimationFrame(drawVisualizer);
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    const data = new Uint8Array(analyser.frequencyBinCount);
+    analyser.getByteFrequencyData(data);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const barWidth = canvas.width / data.length;
+    data.forEach((val, i) => {
+        const barHeight = (val / 255) * canvas.height;
+        const alpha = 0.4 + (val / 255) * 0.6;
+        ctx.fillStyle = `rgba(0, 102, 204, ${alpha})`;
+        ctx.fillRect(i * barWidth, canvas.height - barHeight, barWidth - 1, barHeight);
+    });
+}
+
 playBtn.addEventListener('click', () => {
     if (isPlaying) { pauseSong(); } else { playSong(); }
 });
@@ -139,7 +145,11 @@ prevBtn.addEventListener('click', () => {
 
 nextBtn.addEventListener('click', () => {
     const all = getAllTracks();
-    currentIndex = isShuffle ? Math.floor(Math.random() * all.length) : (currentIndex + 1) % all.length;
+    if (isShuffle) {
+        currentIndex = Math.floor(Math.random() * all.length);
+    } else {
+        currentIndex = (currentIndex + 1) % all.length;
+    }
     loadSong(currentIndex);
     playSong();
 });
@@ -184,7 +194,11 @@ muteBtn.addEventListener('click', () => {
 audio.addEventListener('ended', () => {
     if (!isLoop) {
         const all = getAllTracks();
-        currentIndex = isShuffle ? Math.floor(Math.random() * all.length) : (currentIndex + 1) % all.length;
+        if (isShuffle) {
+            currentIndex = Math.floor(Math.random() * all.length);
+        } else {
+            currentIndex = (currentIndex + 1) % all.length;
+        }
         loadSong(currentIndex);
         playSong();
     }
