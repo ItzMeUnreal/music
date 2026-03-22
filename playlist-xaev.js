@@ -1,8 +1,8 @@
 window.playlistData = {
     name: "xaev",
     pfp: "https://itzmeunreal.neocities.org/images/covers/xaev/xaev.jpg",
-    description: "xaev is a hyperpop/mashup artist. this is their top 10.",
-    sectionName: "xaev top 10 :0",
+    description: "xaev is one of the best complextro/dariacore producers i've ever get to listen. their songs and albums are amazing. please check them out on other streaming services",
+    sectionName: "xaev playlist",
     tracks: [
         {
             title: "it's always a good time",
