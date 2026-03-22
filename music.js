@@ -13,6 +13,10 @@ const songMeta = document.getElementById('songMeta');
 const currentTimeEl = document.getElementById('currentTime');
 const disk = document.getElementById('spinningDisk');
 const canvas = document.getElementById('visualizer');
+const playlistEl = document.getElementById('playlist');
+const artistName = document.getElementById('artistName');
+const artistDesc = document.getElementById('artistDesc');
+const artistPfp = document.getElementById('artistPfp');
 
 let currentIndex = 0;
 let isPlaying = false;
@@ -20,6 +24,7 @@ let isShuffle = false;
 let isLoop = false;
 let isMuted = false;
 let audioCtx, source, osc;
+let currentTracks = [];
 
 function formatTime(s) {
     const m = Math.floor(s / 60);
@@ -27,48 +32,55 @@ function formatTime(s) {
     return `${m}:${sec.toString().padStart(2, '0')}`;
 }
 
-function buildPlaylist() {
-    const playlistEl = document.getElementById('playlist');
-    playlistEl.innerHTML = '';
-    songs.forEach((section) => {
-        const sectionEl = document.createElement('div');
-        sectionEl.className = 'mp-playlist-section';
-        sectionEl.textContent = section.name;
-        playlistEl.appendChild(sectionEl);
-
-        if (section.description) {
-            const desc = document.createElement('div');
-            desc.className = 'mp-playlist-desc';
-            desc.textContent = section.description;
-            playlistEl.appendChild(desc);
-        }
-
-        section.tracks.forEach((track, i) => {
-            const item = document.createElement('div');
-            item.className = 'mp-playlist-item';
-            item.dataset.globalIndex = track.globalIndex;
-            item.innerHTML = `
-                <span class="mp-item-num">${i + 1}</span>
-                <span class="mp-item-name">${track.title}</span>
-                <span class="mp-item-duration" id="dur-${track.globalIndex}">—</span>
-            `;
-            item.addEventListener('click', () => {
-                currentIndex = track.globalIndex;
-                loadSong(currentIndex);
-                playSong();
-            });
-            playlistEl.appendChild(item);
-        });
+function loadPlaylistFile(src) {
+    return new Promise((resolve, reject) => {
+        const existing = document.getElementById('dynamicPlaylist');
+        if (existing) existing.remove();
+        const script = document.createElement('script');
+        script.id = 'dynamicPlaylist';
+        script.src = src;
+        script.onload = () => resolve(window.playlistData);
+        script.onerror = reject;
+        document.body.appendChild(script);
     });
 }
 
-function getAllTracks() {
-    return songs.flatMap(s => s.tracks);
+function applyPlaylist(data) {
+    currentTracks = data.tracks.map((t, i) => ({ ...t, globalIndex: i }));
+    artistName.textContent = data.name;
+    artistDesc.textContent = data.description;
+    artistPfp.style.backgroundImage = data.pfp ? `url(${data.pfp})` : 'none';
+
+    playlistEl.innerHTML = '';
+    const sectionEl = document.createElement('div');
+    sectionEl.className = 'mp-playlist-section';
+    sectionEl.textContent = data.sectionName || data.name;
+    playlistEl.appendChild(sectionEl);
+
+    currentTracks.forEach((track, i) => {
+        const item = document.createElement('div');
+        item.className = 'mp-playlist-item';
+        item.dataset.globalIndex = track.globalIndex;
+        item.innerHTML = `
+            <span class="mp-item-num">${i + 1}</span>
+            <span class="mp-item-name">${track.title}</span>
+            <span class="mp-item-duration" id="dur-${track.globalIndex}">—</span>
+        `;
+        item.addEventListener('click', () => {
+            currentIndex = track.globalIndex;
+            loadSong(currentIndex);
+            playSong();
+        });
+        playlistEl.appendChild(item);
+    });
+
+    currentIndex = 0;
+    loadSong(0);
+    pauseSong();
 }
 
 function loadSong(index) {
-    const all = getAllTracks();
-    const track = all[index];
+    const track = currentTracks[index];
     if (!track) return;
     audio.src = track.src;
     songName.textContent = track.title;
@@ -90,23 +102,18 @@ function setupVisualizer() {
             source.connect(audioCtx.destination);
         }
         if (audioCtx.state === 'suspended') audioCtx.resume();
-
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
-
         const analyser = audioCtx.createAnalyser();
         source.connect(analyser);
-
         const initFn = (context, width, height) => {
             context.fillStyle = '#0a0a0a';
             context.strokeStyle = '#0066cc';
             context.lineWidth = 2;
         };
-
         const primerFn = (context, width, height) => {
             context.fillRect(0, 0, width, height);
         };
-
         if (osc) osc.pause();
         osc = new _osc.Oscilloscope(audioCtx, source, canvas, analyser, 2048, initFn, primerFn);
         osc.start();
@@ -135,15 +142,13 @@ playBtn.addEventListener('click', () => {
 });
 
 prevBtn.addEventListener('click', () => {
-    const all = getAllTracks();
-    currentIndex = (currentIndex - 1 + all.length) % all.length;
+    currentIndex = (currentIndex - 1 + currentTracks.length) % currentTracks.length;
     loadSong(currentIndex);
     playSong();
 });
 
 nextBtn.addEventListener('click', () => {
-    const all = getAllTracks();
-    currentIndex = isShuffle ? Math.floor(Math.random() * all.length) : (currentIndex + 1) % all.length;
+    currentIndex = isShuffle ? Math.floor(Math.random() * currentTracks.length) : (currentIndex + 1) % currentTracks.length;
     loadSong(currentIndex);
     playSong();
 });
@@ -187,8 +192,7 @@ muteBtn.addEventListener('click', () => {
 
 audio.addEventListener('ended', () => {
     if (!isLoop) {
-        const all = getAllTracks();
-        currentIndex = isShuffle ? Math.floor(Math.random() * all.length) : (currentIndex + 1) % all.length;
+        currentIndex = isShuffle ? Math.floor(Math.random() * currentTracks.length) : (currentIndex + 1) % currentTracks.length;
         loadSong(currentIndex);
         playSong();
     }
@@ -199,6 +203,15 @@ audio.addEventListener('loadedmetadata', () => {
     if (durEl) durEl.textContent = formatTime(audio.duration);
 });
 
-buildPlaylist();
-loadSong(0);
+document.querySelectorAll('.mp-artist-grid-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const src = item.dataset.playlist;
+        loadPlaylistFile(src).then(data => {
+            applyPlaylist(data);
+            document.querySelector('.mp-wrapper').scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+});
+
 volumeBar.style.setProperty('--vol', '70%');
+loadPlaylistFile('playlist-xaev.js').then(data => applyPlaylist(data));
