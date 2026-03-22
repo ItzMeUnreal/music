@@ -19,13 +19,13 @@ window.playlistData = {
         {
             title: "hey lol",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/nicopatty/hey_lol.mp3",
-            meta: "nicopatty",
+            meta: "nicopatty, Juneee",
             cover: "https://itzmeunreal.neocities.org/images/covers/nicopatty/heylol.jpg"
         },
         {
             title: "change my mind",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/nicopatty/change_my_mind.mp3",
-            meta: "nicopatty",
+            meta: "nicopatty, tropes",
             cover: "https://itzmeunreal.neocities.org/images/covers/nicopatty/change_my_mind.jpg"
         },
         {
@@ -37,19 +37,19 @@ window.playlistData = {
         {
             title: "butterflies",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/nicopatty/butterflies.mp3",
-            meta: "nicopatty",
+            meta: "nicopatty, Scruff",
             cover: "https://itzmeunreal.neocities.org/images/covers/nicopatty/butterflies.jpg"
         },
         {
             title: "couldn't be anyone",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/nicopatty/couldnt_be_anyone.mp3",
-            meta: "nicopatty",
+            meta: "nicopatty, Scruff",
             cover: "https://itzmeunreal.neocities.org/images/covers/nicopatty/anyone.jpg"
         },
         {
             title: "step back",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/nicopatty/stepback.mp3",
-            meta: "nicopatty",
+            meta: "nicopatty, Deet",
             cover: "https://itzmeunreal.neocities.org/images/covers/nicopatty/stepback.jpg"
         },
         {
@@ -61,7 +61,7 @@ window.playlistData = {
         {
             title: "awake",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/nicopatty/awake.mp3",
-            meta: "nicopatty",
+            meta: "nicopatty, Deet",
             cover: "https://itzmeunreal.neocities.org/images/covers/nicopatty/awake.jpg"
         },
     ]
