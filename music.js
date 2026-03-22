@@ -34,11 +34,13 @@ function formatTime(s) {
 
 function loadPlaylistFile(src) {
     return new Promise((resolve, reject) => {
+        if (!src) return reject('no playlist src');
         const existing = document.getElementById('dynamicPlaylist');
         if (existing) existing.remove();
+        window.playlistData = null;
         const script = document.createElement('script');
         script.id = 'dynamicPlaylist';
-        script.src = src;
+        script.src = src + '?t=' + Date.now();
         script.onload = () => resolve(window.playlistData);
         script.onerror = reject;
         document.body.appendChild(script);
@@ -49,7 +51,7 @@ function applyPlaylist(data) {
     currentTracks = data.tracks.map((t, i) => ({ ...t, globalIndex: i }));
     artistName.textContent = data.name;
     artistDesc.textContent = data.description;
-    artistPfp.style.backgroundImage = data.pfp ? `url(${data.pfp})` : 'none';
+    artistPfp.src = data.pfp || '';
 
     playlistEl.innerHTML = '';
     const sectionEl = document.createElement('div');
@@ -206,11 +208,20 @@ audio.addEventListener('loadedmetadata', () => {
 document.querySelectorAll('.mp-artist-grid-item').forEach(item => {
     item.addEventListener('click', () => {
         const src = item.dataset.playlist;
+        if (!src) return;
         loadPlaylistFile(src).then(data => {
             applyPlaylist(data);
             document.querySelector('.mp-wrapper').scrollIntoView({ behavior: 'smooth' });
         });
     });
+
+    const src = item.dataset.playlist;
+    if (src) {
+        loadPlaylistFile(src).then(data => {
+            if (data.pfp) item.style.backgroundImage = `url(${data.pfp})`;
+            item.querySelector('.placeholder-box').textContent = data.name;
+        }).catch(() => {});
+    }
 });
 
 volumeBar.style.setProperty('--vol', '70%');
