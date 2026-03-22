@@ -1,8 +1,8 @@
 window.playlistData = {
     name: "xaev",
     pfp: "https://itzmeunreal.neocities.org/images/covers/xaev/xaev.jpg",
-    description: "xaev is one of the best complextro/dariacore producers i've ever get to listen. their songs and albums are amazing. please check them out on other streaming services",
-    sectionName: "xaev playlist",
+    description: "xaev is a hyperpop/mashup artist. this is their top 10.",
+    sectionName: "xaev top 10 :0",
     tracks: [
         {
             title: "it's always a good time",
@@ -53,7 +53,7 @@ window.playlistData = {
             cover: "https://itzmeunreal.neocities.org/images/covers/xaev/chapter2.jpg"
         },
         {
-            title: "TAKE-ME-AWAY ~so why try to fight it~",
+            title: "TAKE-ME-AWAY ~so why try to fight it?~",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/xaev/TAKE-ME-AWAY%20~so%20why%20try%20to%20fight%20it_~.mp3",
             meta: "xaev",
             cover: "https://itzmeunreal.neocities.org/images/covers/xaev/to_the_core.jpg"
