@@ -150,33 +150,45 @@
         <div class="card" style="padding: 25px; margin-bottom: 20px;">
             <div class="mp-artist-card">
                 <div class="mp-artist-pfp">
-                    <div class="mp-artist-pfp-placeholder"></div>
+                    <div class="mp-artist-pfp-placeholder" id="artistPfp"></div>
                 </div>
                 <div class="mp-artist-info">
-                    <div class="mp-artist-name">artist name</div>
-                    <div class="mp-artist-desc">short description should go here glungus glungus glungus glungus</div>
+                    <div class="mp-artist-name" id="artistName">select an artist</div>
+                    <div class="mp-artist-desc" id="artistDesc">click on an artist below to load their playlist</div>
                 </div>
             </div>
         </div>
 
         <div class="card" style="padding: 25px; margin-bottom: 30px;">
-            <p class="section-title" style="text-align:left; margin-bottom: 16px;">albums</p>
+            <p class="section-title" style="text-align:left; margin-bottom: 4px;">artists</p>
+            <p style="font-size: 13px; font-weight: bold; color: #fff; margin-bottom: 4px;">row title</p>
+            <p style="font-size: 11px; color: #555; margin-bottom: 16px;">row title description goes here</p>
+            <div class="mp-albums-grid" style="margin-bottom: 24px;">
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="playlist-xaev.js" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box">xaev</div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+            </div>
+
+            <p style="font-size: 13px; font-weight: bold; color: #fff; margin-bottom: 4px;">row title</p>
+            <p style="font-size: 11px; color: #555; margin-bottom: 16px;">row title description goes here</p>
+            <div class="mp-albums-grid" style="margin-bottom: 24px;">
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+            </div>
+
+            <p style="font-size: 13px; font-weight: bold; color: #fff; margin-bottom: 4px;">row title</p>
+            <p style="font-size: 11px; color: #555; margin-bottom: 16px;">row title description goes here</p>
             <div class="mp-albums-grid">
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
-                <div class="mp-album-placeholder"></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
+                <div class="img-wrapper mp-artist-grid-item" data-playlist="" style="width:100%; height:auto; aspect-ratio:1; cursor:pointer;"><div class="placeholder-box"></div></div>
             </div>
         </div>
     </div>
@@ -184,7 +196,6 @@
 
 <audio id="audioPlayer" crossorigin="anonymous"></audio>
 <script src="https://unpkg.com/webaudio-oscilloscope@3.2.1/dist/index.js"></script>
-<script src="music-playlist.js"></script>
 <script src="music.js"></script>
 </body>
 </html>
