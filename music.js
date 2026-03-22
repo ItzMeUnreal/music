@@ -206,6 +206,12 @@ audio.addEventListener('loadedmetadata', () => {
 });
 
 document.querySelectorAll('.mp-artist-grid-item').forEach(item => {
+    const pfp = item.dataset.pfp;
+    if (pfp) {
+        item.style.backgroundImage = `url(${pfp})`;
+        item.querySelector('.placeholder-box').textContent = '';
+    }
+
     item.addEventListener('click', () => {
         const src = item.dataset.playlist;
         if (!src) return;
@@ -214,14 +220,6 @@ document.querySelectorAll('.mp-artist-grid-item').forEach(item => {
             document.querySelector('.mp-wrapper').scrollIntoView({ behavior: 'smooth' });
         });
     });
-
-    const src = item.dataset.playlist;
-    if (src) {
-        loadPlaylistFile(src).then(data => {
-            if (data.pfp) item.style.backgroundImage = `url(${data.pfp})`;
-            item.querySelector('.placeholder-box').textContent = data.name;
-        }).catch(() => {});
-    }
 });
 
 volumeBar.style.setProperty('--vol', '70%');
