@@ -87,11 +87,15 @@ function setupVisualizer() {
         if (!audioCtx) {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             source = audioCtx.createMediaElementSource(audio);
+            source.connect(audioCtx.destination);
         }
         if (audioCtx.state === 'suspended') audioCtx.resume();
 
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
+
+        const analyser = audioCtx.createAnalyser();
+        source.connect(analyser);
 
         const initFn = (context, width, height) => {
             context.fillStyle = '#0a0a0a';
@@ -104,7 +108,7 @@ function setupVisualizer() {
         };
 
         if (osc) osc.pause();
-        osc = new _osc.Oscilloscope(audioCtx, source, canvas, audioCtx.destination, 2048, initFn, primerFn);
+        osc = new _osc.Oscilloscope(audioCtx, source, canvas, analyser, 2048, initFn, primerFn);
         osc.start();
     } catch(e) {
         console.warn('Visualizer unavailable:', e);
