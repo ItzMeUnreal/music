@@ -345,3 +345,51 @@
     color: #444;
     font-family: monospace;
 }
+
+.mp-artist-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.mp-artist-pfp {
+    flex-shrink: 0;
+}
+
+.mp-artist-pfp-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    outline: 3px solid #444;
+    background: #1a1a1a;
+}
+
+.mp-artist-info {
+    flex: 1;
+}
+
+.mp-artist-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.mp-artist-desc {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.6;
+}
+
+.mp-albums-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.mp-album-placeholder {
+    aspect-ratio: 1;
+    background: #1a1a1a;
+    border-radius: 4px;
+    outline: 2px solid #222;
+}
