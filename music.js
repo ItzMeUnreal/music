@@ -118,7 +118,7 @@ function setupVisualizer() {
 function playSong() {
     audio.play();
     isPlaying = true;
-    playBtn.textContent = '⏸';
+    playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
     disk.classList.add('playing');
     setupVisualizer();
 }
@@ -126,7 +126,7 @@ function playSong() {
 function pauseSong() {
     audio.pause();
     isPlaying = false;
-    playBtn.textContent = '▶';
+    playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
     disk.classList.remove('playing');
 }
 
@@ -175,14 +175,14 @@ volumeBar.addEventListener('input', () => {
     audio.volume = volumeBar.value;
     volLabel.textContent = Math.round(volumeBar.value * 100);
     volumeBar.style.setProperty('--vol', (volumeBar.value * 100) + '%');
-    if (audio.volume === 0) { muteBtn.textContent = '🔇'; isMuted = true; }
-    else { muteBtn.textContent = '🔊'; isMuted = false; }
+    if (audio.volume === 0) { muteBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>'; isMuted = true; }
+    else { muteBtn.innerHTML = '<i class="fa-solid fa-volume"></i>'; isMuted = false; }
 });
 
 muteBtn.addEventListener('click', () => {
     isMuted = !isMuted;
     audio.muted = isMuted;
-    muteBtn.textContent = isMuted ? '🔇' : '🔊';
+    muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume"></i>';
 });
 
 audio.addEventListener('ended', () => {
