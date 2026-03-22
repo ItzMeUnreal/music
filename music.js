@@ -206,12 +206,6 @@ audio.addEventListener('loadedmetadata', () => {
 });
 
 document.querySelectorAll('.mp-artist-grid-item').forEach(item => {
-    const pfp = item.dataset.pfp;
-    if (pfp) {
-        item.style.backgroundImage = `url(${pfp})`;
-        item.querySelector('.placeholder-box').textContent = '';
-    }
-
     item.addEventListener('click', () => {
         const src = item.dataset.playlist;
         if (!src) return;
