@@ -50,7 +50,7 @@ function loadPlaylistFile(src) {
 function applyPlaylist(data) {
     currentTracks = data.tracks.map((t, i) => ({ ...t, globalIndex: i }));
     artistName.textContent = data.name;
-    artistDesc.textContent = data.description;
+    artistDesc.innerHTML = data.description;
     artistPfp.src = data.pfp || '';
 
     playlistEl.innerHTML = '';
