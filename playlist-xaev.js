@@ -53,7 +53,7 @@ const playlistData = {
             cover: "https://itzmeunreal.neocities.org/images/covers/xaev/chapter2.jpg"
         },
         {
-            title: "TAKE-ME-AWAY ~so why try to fight it?~",
+            title: "TAKE-ME-AWAY ~so why try to fight it~",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/xaev/TAKE-ME-AWAY%20~so%20why%20try%20to%20fight%20it_~.mp3",
             meta: "xaev",
             cover: "https://itzmeunreal.neocities.org/images/covers/xaev/to_the_core.jpg"
