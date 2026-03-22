@@ -176,13 +176,13 @@ volumeBar.addEventListener('input', () => {
     volLabel.textContent = Math.round(volumeBar.value * 100);
     volumeBar.style.setProperty('--vol', (volumeBar.value * 100) + '%');
     if (audio.volume === 0) { muteBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>'; isMuted = true; }
-    else { muteBtn.innerHTML = '<i class="fa-solid fa-volume"></i>'; isMuted = false; }
+    else { muteBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>'; isMuted = false; }
 });
 
 muteBtn.addEventListener('click', () => {
     isMuted = !isMuted;
     audio.muted = isMuted;
-    muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume"></i>';
+    muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
 });
 
 audio.addEventListener('ended', () => {
