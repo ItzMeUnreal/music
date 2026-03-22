@@ -93,14 +93,18 @@ function setupVisualizer() {
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
 
-        const initFn = (ctx, width, height) => {
-            ctx.fillStyle = '#0a0a0a';
-            ctx.strokeStyle = '#0066cc';
-            ctx.lineWidth = 2;
+        const initFn = (context, width, height) => {
+            context.fillStyle = '#0a0a0a';
+            context.strokeStyle = '#0066cc';
+            context.lineWidth = 2;
+        };
+
+        const primerFn = (context, width, height) => {
+            context.fillRect(0, 0, width, height);
         };
 
         if (osc) osc.pause();
-        osc = new _osc.Oscilloscope(audioCtx, source, canvas, audioCtx.destination, 2048, initFn);
+        osc = new _osc.Oscilloscope(audioCtx, source, canvas, audioCtx.destination, 2048, initFn, primerFn);
         osc.start();
     } catch(e) {
         console.warn('Visualizer unavailable:', e);
