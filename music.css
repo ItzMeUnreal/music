@@ -384,6 +384,15 @@
     line-height: 1.6;
 }
 
+.mp-artist-desc a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.mp-artist-desc a:hover {
+    text-decoration: underline;
+}
+
 .mp-albums-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
