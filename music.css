@@ -418,6 +418,10 @@
     display: block;
 }
 
+.mp-grid-item:hover .img-caption {
+    opacity: 1;
+}
+
 .mp-grid-item .placeholder-box {
     width: 100%;
     height: 100%;
