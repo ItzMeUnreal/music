@@ -1,7 +1,7 @@
 window.playlistData = {
     name: "sekins",
     pfp: "https://itzmeunreal.neocities.org/images/covers/sekins/sekins.jpg",
-    description: "sekins one of the best artist i've ever met and became friends with. they don't usually finish all their songs but they still post some wips on their <a href='https://dope1kitty.nekoweb.org/'>socials</a>, make sure to follow them.",
+    description: "sekins one of the best artist i've ever met and became friends with. they don't usually finish all their songs but they still post some wips on their <a href='https://sekins.neocities.org/'>socials</a>, make sure to follow them.",
     sectionName: "sekins",
     tracks: [
         {
