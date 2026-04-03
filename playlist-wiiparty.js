@@ -1,6 +1,6 @@
 window.playlistData = {
     name: "wii party",
-    pfp: "https://itzmeunreal.neocities.org/images/covers/wii_party/disk.png",
+    pfp: "https://itzmeunreal.neocities.org/images/covers/wii_party/cover.jpg",
     description: "like wii sports resort, i love this game, and i love the ost EVEN MORE. please enjoy it :)",
     sectionName: "wii party ost",
     tracks: [
