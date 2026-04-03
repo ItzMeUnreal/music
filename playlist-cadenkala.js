@@ -1,7 +1,7 @@
 window.playlistData = {
     name: "cadenkala",
     pfp: "https://itzmeunreal.neocities.org/images/covers/cadenkala/cadenkala.jpg",
-    description: "i love this guy's pluggnb, it's such a mess he stoped producing. cadenkala please come backk",
+    description: "i love this guy's pluggnb, it's such a mess he stopped producing. cadenkala please come backk",
     sectionName: "cadenkala",
     tracks: [
         {
