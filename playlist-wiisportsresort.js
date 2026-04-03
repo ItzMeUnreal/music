@@ -1,8 +1,8 @@
 window.playlistData = {
-    name: "Wii Sports Resort",
+    name: "wii sports resort",
     pfp: "https://itzmeunreal.neocities.org/images/covers/wii_sports_resort/cover.png",
-    description: "The original Wii Sports Resort OST.",
-    sectionName: "Wii Sports Resort OST",
+    description: "this is one of my favourite games if not my favourite. I LOVE THE WII",
+    sectionName: "wii sports resort ost",
     tracks: [
 
         {
