@@ -1,7 +1,7 @@
 window.playlistData = {
     name: "nicopatty",
     pfp: "https://itzmeunreal.neocities.org/images/covers/nicopatty/nicopatty.jpg",
-    description: "nicopatty is mostly known because of his famous roblox game nico's nextbots, but before making this game he made some crazy songs, check them out.",
+    description: "nicopatty is mostly known because of his famous roblox game nico's nextbots, but before making this game he made some CRAZY songs, check them out :D",
     sectionName: "nicopatty",
     tracks: [
         {
