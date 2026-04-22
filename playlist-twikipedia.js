@@ -7,7 +7,7 @@ window.playlistData = {
         {
             title: "titles",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/twikipedia/titles.mp3",
-            meta: "twikipedia",
+            meta: "twikipedia, funeral",
             cover: "https://itzmeunreal.neocities.org/images/covers/twikipedia/titles.jpg"
         },
         {
@@ -19,19 +19,19 @@ window.playlistData = {
         {
             title: "hotel",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/twikipedia/hotel.mp3",
-            meta: "twikipedia",
+            meta: "twikipedia, SEBii",
             cover: "https://itzmeunreal.neocities.org/images/covers/twikipedia/hotel.jpg"
         },
         {
             title: "talk down",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/twikipedia/talk%20down.mp3",
-            meta: "twikipedia",
+            meta: "twikipedia, SEBii",
             cover: "https://itzmeunreal.neocities.org/images/covers/twikipedia/talk.jpg"
         },
         {
             title: "poster",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/twikipedia/poster.mp3",
-            meta: "twikipedia",
+            meta: "twikipedia, lieu",
             cover: "https://itzmeunreal.neocities.org/images/covers/twikipedia/chronic.jpg"
         },
         {
@@ -49,7 +49,7 @@ window.playlistData = {
         {
             title: "born to pwn",
             src: "https://file.garden/abIGtIH1yApu4jf7/songs/twikipedia/born%20to%20pwn.mp3",
-            meta: "twikipedia",
+            meta: "twikipedia, midwxst",
             cover: "https://itzmeunreal.neocities.org/images/covers/twikipedia/born.jpg"
         },
         {
