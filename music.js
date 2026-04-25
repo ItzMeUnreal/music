@@ -1,3 +1,4 @@
+//Dope Lake Maximum The IVth, what are you doing here
 const audio = document.getElementById('audioPlayer');
 const playBtn = document.getElementById('playBtn');
 const prevBtn = document.getElementById('prevBtn');
